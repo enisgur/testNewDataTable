@@ -5,6 +5,9 @@ import Body from "./Body";
 
 function Index({ data }) {
   //   console.log(data);
+  const options = {
+    isSorable: true,
+  };
   return (
     <div>
       <h3>DataTable</h3>

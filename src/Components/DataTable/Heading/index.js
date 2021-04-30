@@ -6,13 +6,7 @@ import checkHeadings from "./functions/checkHeadings";
 function Index({ data }) {
   // console.log(data);
 
-  checkHeadings(data);
-  return (
-    <>
-      <th>Title</th>
-      <th>Name</th>
-    </>
-  );
+  return <>{checkHeadings(data)}</>;
 }
 
 export default Index;

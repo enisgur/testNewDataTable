@@ -1,16 +1,22 @@
 import { mapHeadings, upperCaseFirstChar } from "./functions";
 
-function autoHeading(data) {
-  //   console.log(data);
+function autoHeading(data, options, headClicked) {
+  // GET headings keys exp:  id,name,email...
   const headingKeys = mapHeadings(data);
-
-  // const titles = Obj
 
   return (
     <>
-      {headingKeys.map((head) => (
-        <th key={head}>{upperCaseFirstChar(head)}</th>
-      ))}
+      {headingKeys.map((head) => {
+        // if hide ?? then dont display that
+        if (options.hide && options.hide.includes(head)) return null;
+        // if (options.isSortable)
+
+        return (
+          <th key={head} id={head} onClick={headClicked}>
+            {upperCaseFirstChar(head)}
+          </th>
+        );
+      })}
     </>
   );
 }

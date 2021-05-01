@@ -1,19 +1,17 @@
 import errorHandle from "./errorHandle";
 import autoHeading from "./headingInside/autoHeading";
 
-const initialOptions = {
-  isManualHeading: false,
-  isSortable: false,
-  isHide: false,
-  //   type: "text",
-};
+// initial options
+import { initialCheckHeadings } from "../../../../Data/initialOptions";
 
 // add functions; maybe in actions object or array everything inside
 // -- hide
-// -- sortable
+// -- sortable  // that should be in heading !! so we can click the heading
 // -- THIS IS FOR TABLE BODY type text, input, button, select .....
-function checkHeadings(data, options = initialOptions) {
-  console.log(options);
+function checkHeadings(data, options, headClicked) {
+  // get all options and merge with initialOptions
+  options = { ...initialCheckHeadings, ...options };
+
   try {
     if (typeof data === "undefined" || typeof data === undefined || !data)
       return errorHandle("no data found in checkHeadings");
@@ -23,7 +21,13 @@ function checkHeadings(data, options = initialOptions) {
     if (Array.isArray(data) && !options.isManualHeading) {
       if (typeof data !== "object")
         return errorHandle("checkHeading Array inside is not object");
-      return autoHeading(data);
+
+      // check if isHide
+      // if (isHide)
+      // check if sortable
+      // make actions if there are some actions for buttons or inputs staff ??
+
+      return autoHeading(data, options, headClicked);
     }
 
     //   check if heading are coming manuel

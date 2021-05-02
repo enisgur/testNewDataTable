@@ -4,22 +4,52 @@ import autoHeading from "./headingInside/autoHeading";
 // initial options
 import { initialCheckHeadings } from "../../../../Data/initialOptions";
 
+// Table Context
+import {
+  useTableData,
+  useTableOptions,
+  useUpdateHeading,
+} from "../../ContextTable/TableContext";
+
 // add functions; maybe in actions object or array everything inside
 // -- hide
 // -- sortable  // that should be in heading !! so we can click the heading
 // -- THIS IS FOR TABLE BODY type text, input, button, select .....
-function checkHeadings(data, options, headClicked) {
-  // get all options and merge with initialOptions
-  options = { ...initialCheckHeadings, ...options };
+
+// function checkHeadings(data, options, headClicked) {
+function CheckHeadings() {
+  const { contextData } = useTableData();
+  const { contextOptions } = useTableOptions();
+  const headClicked = useUpdateHeading();
+
+  // console.log("zaaa ", contextData);
+  // console.log("zaaa ", contextOptions);
 
   try {
-    if (typeof data === "undefined" || typeof data === undefined || !data)
+    // check if data or return null
+    if (
+      !contextData ||
+      contextData === null ||
+      contextData === undefined ||
+      contextData.length <= 0
+    )
+      return null;
+
+    // get all options and merge with initialOptions
+    // options = { ...initialCheckHeadings, ...options };
+    const newOptions = { ...initialCheckHeadings, ...contextOptions };
+
+    if (
+      typeof contextData === "undefined" ||
+      typeof contextData === undefined ||
+      !contextData
+    )
       return errorHandle("no data found in checkHeadings");
 
     // if data comes in array [{name:"jhon"},{name:"Steve"}];
     //   should be array inside object
-    if (Array.isArray(data) && !options.isManualHeading) {
-      if (typeof data !== "object")
+    if (Array.isArray(contextData) && !newOptions.isManualHeading) {
+      if (typeof contextData !== "object")
         return errorHandle("checkHeading Array inside is not object");
 
       // check if isHide
@@ -27,14 +57,16 @@ function checkHeadings(data, options, headClicked) {
       // check if sortable
       // make actions if there are some actions for buttons or inputs staff ??
 
-      return autoHeading(data, options, headClicked);
+      // return autoHeading(contextData, contextOptions, headClicked);
+      // return null;
+      return autoHeading(contextData, newOptions, headClicked);
     }
 
     //   check if heading are coming manuel
     //   manual headings should come with Array inside object
     //   [{title:"name", isShortable:true, isSearchable: true}]
-    if (options.isManualHeading && Array.isArray(data)) {
-      if (typeof data !== "object")
+    if (newOptions.isManualHeading && Array.isArray(contextData)) {
+      if (typeof contextData !== "object")
         return errorHandle("checkHeading Array inside is not object");
       return null;
     }
@@ -45,4 +77,4 @@ function checkHeadings(data, options, headClicked) {
   }
 }
 
-export default checkHeadings;
+export default CheckHeadings;

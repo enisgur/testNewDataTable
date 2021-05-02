@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useMemo } from "react";
 
 const TableDataContext = React.createContext();
 const TableOptionsContext = React.createContext();
@@ -19,9 +19,18 @@ export function useUpdateHeading() {
 }
 
 export function TableProvider({ children }) {
-  const [data, setData] = useState([]);
-  const [options, setOptions] = useState([]);
+  const [contextData, contextSetData] = useState([]);
+  const [contextOptions, contextSetOptions] = useState({});
   const [isSorted, setIsSorted] = useState(false);
+
+  const providerDataValue = useMemo(() => ({ contextData, contextSetData }), [
+    contextData,
+    contextSetData,
+  ]);
+  const providerOptionsValue = useMemo(
+    () => ({ contextOptions, contextSetOptions }),
+    [contextOptions, contextSetOptions]
+  );
 
   function toggleSorted() {
     setIsSorted(!isSorted);
@@ -34,8 +43,9 @@ export function TableProvider({ children }) {
   }
 
   return (
-    <TableDataContext.Provider value={data}>
-      <TableOptionsContext.Provider value={options}>
+    // <TableDataContext.Provider value={{ contextData, contextSetData }}>
+    <TableDataContext.Provider value={providerDataValue}>
+      <TableOptionsContext.Provider value={providerOptionsValue}>
         <UpdateHeadingContext.Provider value={onHeaderClick}>
           {children}
         </UpdateHeadingContext.Provider>

@@ -24,7 +24,7 @@ export function useUpdateHeading() {
 export function TableProvider({ children }) {
   const [contextData, contextSetData] = useState([]);
   const [contextOptions, contextSetOptions] = useState({});
-  // const [isSorted, setIsSorted] = useState(false);
+  const [isSorted, setIsSorted] = useState(false);
 
   const providerDataValue = useMemo(() => ({ contextData, contextSetData }), [
     contextData,
@@ -51,7 +51,14 @@ export function TableProvider({ children }) {
     <TableDataContext.Provider value={providerDataValue}>
       <TableOptionsContext.Provider value={providerOptionsValue}>
         <UpdateHeadingContext.Provider
-          value={(e) => onHeaderClick(e, providerDataValue)}
+          value={(e) =>
+            onHeaderClick(e, {
+              contextData,
+              contextSetData,
+              isSorted,
+              setIsSorted,
+            })
+          }
         >
           {children}
         </UpdateHeadingContext.Provider>

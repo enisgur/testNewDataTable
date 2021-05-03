@@ -1,47 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 // Table Context
-// import { useTableData, useTableOptions, useUpdateHeading } from "./ContextTable/TableContext";
-import {
-  TableProvider,
-  useTableData,
-  useTableOptions,
-} from "./ContextTable/TableContext";
+import { useTableData, useTableOptions } from "./ContextTable/TableContext";
 
 import Heading from "./Heading";
 import Body from "./Body";
 
 function LayoutIndex({ data, options }) {
-  // const { contextData, contextSetData } = useContext(useTableOptions);
-  // const { contextOptions, contextSetOptions } = useContext(useTableOptions);
-
-  //   const zaa = useTableData();
   const { contextSetData } = useTableData();
   const { contextSetOptions } = useTableOptions();
 
   useEffect(() => {
-    if (data[0] && options) {
+    if (data[0]) {
       contextSetData(data);
+    }
+    if (options) {
       contextSetOptions(options);
     }
-  }, []);
-  //   }, [data, options]);
-
-  // const [isSorted, setIsSorted] = useState(false);
-
-  //   console.log(data);
-  // const options = {
-  //   isSorable: true,
-  // };
-
-  // const headClicked = (e) => {
-  //   // check here
-  //   console.log(e.target.id);
-  //   // sort data
-
-  //   // then set is sorted
-  //   setIsSorted(!isSorted);
-  // };
+  }, [data, options, contextSetData, contextSetOptions]);
 
   return (
     <div>

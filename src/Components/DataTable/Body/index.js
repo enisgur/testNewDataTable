@@ -1,12 +1,14 @@
-import React from "react";
+//import Table Context
+import { useTableData, useTableOptions } from "../ContextTable/TableContext";
+
+// functions
+import { tableData } from "./functions/dataFunctions";
 
 function Index() {
-  return (
-    <tr>
-      <td>Test</td>
-      <td>name</td>
-    </tr>
-  );
+  const { contextData } = useTableData();
+  const { contextOptions } = useTableOptions();
+
+  return tableData(contextData, contextOptions);
 }
 
 export default Index;

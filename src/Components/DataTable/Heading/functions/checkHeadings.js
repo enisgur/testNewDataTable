@@ -39,6 +39,7 @@ function CheckHeadings() {
     // options = { ...initialCheckHeadings, ...options };
     const newOptions = { ...initialCheckHeadings, ...contextOptions };
 
+    // if no data
     if (
       typeof contextData === "undefined" ||
       typeof contextData === undefined ||

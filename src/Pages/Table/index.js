@@ -20,6 +20,9 @@ function Index() {
       <h2>Table</h2>
       <div>
         <DataTable data={testData} options={options} />
+        <br />
+        <br />
+        <DataTable data={testData} />
       </div>
     </div>
   );

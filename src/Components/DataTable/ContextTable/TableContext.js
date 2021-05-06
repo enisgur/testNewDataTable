@@ -57,6 +57,7 @@ export function TableProvider({ children }) {
               contextSetData,
               isSorted,
               setIsSorted,
+              contextOptions,
             })
           }
         >

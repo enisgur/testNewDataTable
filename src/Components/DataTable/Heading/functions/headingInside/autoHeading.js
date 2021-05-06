@@ -17,8 +17,23 @@ function autoHeading(data, options, headClicked) {
           </th>
         );
       })}
+      {/* if inputs then render inputs */}
+      {renderInputs(options)}
     </>
   );
+}
+
+function renderInputs(options) {
+  // @TODO CHECK HOW MANY IPUTS ARE THERE AND ADD MORE HEADINGS DEPENDS HOW MANY WE NEED
+  if (!checkInputs(options)) return null;
+
+  return <th>Actions</th>;
+}
+
+function checkInputs(options) {
+  // if options has inputs and if its not false
+  if (Object.keys(options).includes("inputs") && !options.inputs) return false;
+  return true;
 }
 
 export default autoHeading;

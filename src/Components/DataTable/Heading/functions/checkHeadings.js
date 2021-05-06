@@ -53,9 +53,6 @@ function CheckHeadings() {
       if (typeof contextData !== "object")
         return errorHandle("checkHeading Array inside is not object");
 
-      // check if isHide
-      // if (isHide)
-      // check if sortable
       // make actions if there are some actions for buttons or inputs staff ??
 
       // return autoHeading(contextData, contextOptions, headClicked);

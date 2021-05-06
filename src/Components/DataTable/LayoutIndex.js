@@ -11,6 +11,7 @@ function LayoutIndex({ data, options }) {
   const { contextSetOptions } = useTableOptions();
 
   useEffect(() => {
+    if (!data) return null;
     if (data[0]) {
       contextSetData(data);
     }

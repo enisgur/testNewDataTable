@@ -6,7 +6,7 @@ import DataTable from "../../Components/DataTable";
 function Index() {
   // const testData2 = [];
   const testData = [
-    { id: 1, name: "Enis", email: "test@test.com", price: 100 },
+    { name: "Enis", email: "test@test.com", price: 100 },
     { id: 2, name: "Jhon", email: "jhon@test.com", price: 0 },
     { id: 3, name: "Moma", email: "Moma@test.com", price: 0 },
     { id: 4, name: "Ahmet", email: "ahmet@aol.com", price: 20 },
@@ -21,7 +21,10 @@ function Index() {
       { prop: "price", type: "text", value: "", placeholder: "enter Value" },
       { prop: "name", type: "text" },
     ],
-    actionInputs: [{ type: "submit", value: "Enterasd", placeholder: "" }],
+    actionInputs: [
+      { type: "text", value: "Current Value", placeholder: "enter value" },
+      { type: "button", value: "Enterasd" },
+    ],
   };
 
   return (

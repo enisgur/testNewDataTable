@@ -2,23 +2,31 @@ import React, { useContext, useState, useMemo } from "react";
 
 // import functions
 import { onHeaderClick } from "./functions/headerClick";
+import { onActionClick } from "./functions/actionClick";
 
 const TableDataContext = React.createContext();
 const TableOptionsContext = React.createContext();
 const UpdateHeadingContext = React.createContext();
+const OnActionClickedContext = React.createContext();
 // const isSorted = React.createContext();
-// const clickedHeading = React.createContext();
 
+// all table data
 export function useTableData() {
   return useContext(TableDataContext);
 }
 
+// all options data
 export function useTableOptions() {
   return useContext(TableOptionsContext);
 }
 
+// when one of the header clicked // we are sorting data and updating
 export function useUpdateHeading() {
   return useContext(UpdateHeadingContext);
+}
+// when action input is clicked.
+export function useActionClicked() {
+  return useContext(OnActionClickedContext);
 }
 
 export function TableProvider({ children }) {
@@ -35,17 +43,6 @@ export function TableProvider({ children }) {
     [contextOptions, contextSetOptions]
   );
 
-  // function toggleSorted() {
-  //   setIsSorted(!isSorted);
-  // }
-
-  // function onHeaderClick(e) {
-  //   console.log("from Context header clicked : ", e.target.id);
-  //   // console.log("from Context header clicked : ", e);
-
-  //   //   toggleSorted()
-  // }
-
   return (
     // <TableDataContext.Provider value={{ contextData, contextSetData }}>
     <TableDataContext.Provider value={providerDataValue}>
@@ -61,7 +58,13 @@ export function TableProvider({ children }) {
             })
           }
         >
-          {children}
+          <OnActionClickedContext.Provider
+            value={(e, rowDataID, rowData) =>
+              onActionClick(e, rowDataID, rowData)
+            }
+          >
+            {children}
+          </OnActionClickedContext.Provider>
         </UpdateHeadingContext.Provider>
       </TableOptionsContext.Provider>
     </TableDataContext.Provider>

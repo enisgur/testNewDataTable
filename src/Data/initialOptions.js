@@ -1,4 +1,4 @@
-exports.initialCheckHeadings = {
+exports.initialOptions = {
   isManualHeading: false,
   sortable: false,
   // isSortable: false,

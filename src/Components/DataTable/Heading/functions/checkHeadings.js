@@ -2,7 +2,7 @@ import errorHandle from "./errorHandle";
 import autoHeading from "./headingInside/autoHeading";
 
 // initial options
-import { initialCheckHeadings } from "../../../../Data/initialOptions";
+import { initialOptions } from "../../../../Data/initialOptions";
 
 // Table Context
 import {
@@ -36,8 +36,8 @@ function CheckHeadings() {
       return null;
 
     // get all options and merge with initialOptions
-    // options = { ...initialCheckHeadings, ...options };
-    const newOptions = { ...initialCheckHeadings, ...contextOptions };
+    // options = { ...initialOptions, ...options };
+    const newOptions = { ...initialOptions, ...contextOptions };
 
     // if no data
     if (

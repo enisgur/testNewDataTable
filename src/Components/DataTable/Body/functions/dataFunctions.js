@@ -1,9 +1,9 @@
-import { initialCheckHeadings } from "../../../../Data/initialOptions";
+import { initialOptions } from "../../../../Data/initialOptions";
 import JSXReturns from "./ClassJSXReturns";
 
 export const tableData = function (data, options) {
   // get initial options and mix them with new options
-  const newOptions = { ...initialCheckHeadings, ...options };
+  const newOptions = { ...initialOptions, ...options };
 
   return data.map((row, i) => {
     const dataKeys = Object.keys(row);

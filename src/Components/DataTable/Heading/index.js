@@ -1,7 +1,7 @@
 import React from "react";
 
 // functions
-import CheckHeadings from "./functions/CheckHeadings";
+import CheckHeadings from "./functions/checkHeadings";
 
 function Index() {
   return (

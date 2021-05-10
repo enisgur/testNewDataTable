@@ -69,7 +69,13 @@ export function TableProvider({ children }) {
           >
             <OnInputChange.Provider
               value={(e, key, rowID) =>
-                onInputChange(e, key, rowID, providerDataValue)
+                onInputChange(
+                  e,
+                  key,
+                  rowID,
+                  providerDataValue,
+                  providerOptionsValue
+                )
               }
             >
               {children}

@@ -6,4 +6,5 @@ exports.initialOptions = {
   //   type: "text",
   inputs: false,
   actionInputs: false,
+  onInputChange: false,
 };

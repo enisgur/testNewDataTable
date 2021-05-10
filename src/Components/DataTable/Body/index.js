@@ -3,6 +3,7 @@ import {
   useTableData,
   useTableOptions,
   useActionClicked,
+  useInputChange,
 } from "../ContextTable/TableContext";
 
 // functions
@@ -12,8 +13,9 @@ function Index() {
   const { contextData } = useTableData();
   const { contextOptions } = useTableOptions();
   const onActionClicked = useActionClicked();
+  const onInputChange = useInputChange();
 
-  return tableData(contextData, contextOptions, onActionClicked);
+  return tableData(contextData, contextOptions, onActionClicked, onInputChange);
 }
 
 export default Index;

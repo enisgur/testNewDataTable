@@ -2,12 +2,13 @@ import React, { useContext, useState, useMemo } from "react";
 
 // import functions
 import { onHeaderClick } from "./functions/headerClick";
-import { onActionClick } from "./functions/actionClick";
+import { onActionClick, onInputChange } from "./functions/actionClick";
 
 const TableDataContext = React.createContext();
 const TableOptionsContext = React.createContext();
 const UpdateHeadingContext = React.createContext();
 const OnActionClickedContext = React.createContext();
+const OnInputChange = React.createContext();
 // const isSorted = React.createContext();
 
 // all table data
@@ -27,6 +28,9 @@ export function useUpdateHeading() {
 // when action input is clicked.
 export function useActionClicked() {
   return useContext(OnActionClickedContext);
+}
+export function useInputChange() {
+  return useContext(OnInputChange);
 }
 
 export function TableProvider({ children }) {
@@ -60,10 +64,16 @@ export function TableProvider({ children }) {
         >
           <OnActionClickedContext.Provider
             value={(e, rowDataID, rowData) =>
-              onActionClick(e, rowDataID, rowData)
+              onActionClick(e, rowDataID, rowData, providerOptionsValue)
             }
           >
-            {children}
+            <OnInputChange.Provider
+              value={(e, key, rowID) =>
+                onInputChange(e, key, rowID, providerDataValue)
+              }
+            >
+              {children}
+            </OnInputChange.Provider>
           </OnActionClickedContext.Provider>
         </UpdateHeadingContext.Provider>
       </TableOptionsContext.Provider>

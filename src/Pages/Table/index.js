@@ -25,6 +25,9 @@ function Index() {
       { type: "text", value: "Current Value", placeholder: "enter value" },
       { type: "button", value: "Enterasd" },
     ],
+    onInputChange: (res) => {
+      console.log("zaaaa ", res);
+    },
   };
 
   return (

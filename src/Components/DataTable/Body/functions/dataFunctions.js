@@ -25,6 +25,9 @@ export const tableData = function (
 
 // UNIQ KEY FOR Table TR
 const checkObjectKeys_TR = (row, index) => {
-  if (row.id) return row.id;
+  // @TODO TO-DO if some of them dont have id then if we return row.id then some of them gets same key
+  // maybe just leave it just index or do something else
+  // that code is working with no problem. if you want to change it be carefull dont give same key
+  // if (row.id) return row.id;
   return index;
 };

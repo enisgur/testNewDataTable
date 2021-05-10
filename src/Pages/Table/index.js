@@ -45,7 +45,7 @@ function Index() {
         <DataTable data={data} options={options} />
         <br />
         <br />
-        <DataTable data={data} />
+        {/* <DataTable data={data} /> */}
       </div>
     </div>
   );

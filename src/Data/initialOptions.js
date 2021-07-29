@@ -7,4 +7,5 @@ exports.initialOptions = {
   inputs: false,
   actionInputs: false,
   onInputChange: false,
+  onActionClick: false,
 };
